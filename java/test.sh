@@ -1,4 +1,4 @@
 #!/bin/bash
 
-javac GmSSL.java
-java -Djava.library.path=../ GmSSL
+javac org/gmssl/GmSSL.java
+java -Djava.library.path=../ org/gmssl/GmSSL

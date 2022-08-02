@@ -240,5 +240,8 @@ public class GmSSL {
 
 	static {
 		System.loadLibrary("gmssljni");
+		// System.load("/Users/tony/unicom/git/GmSSL/java/libgmssljni.so");
+
+		
 	}
 }
