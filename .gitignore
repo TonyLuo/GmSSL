@@ -219,3 +219,4 @@ include/openssl/srp.h
 /rust
 /python
 *.log
+*.class

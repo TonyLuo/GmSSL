@@ -49,31 +49,67 @@
 package org.gmssl;
 
 public class GmSSL {
+	class DeviceInfo {
+		public String issuerName;
+		public String deviceName;
+		public String deviceSerial;
+		public int deviceVersion;
+		public int standardVersion;
+		public int asymAlgAbility;
+		public int symAlgAbility;
+		public int hashAlgAbility;
+		public int bufferSize;
+	}
 
 	public native String[] getVersions();
+
 	public native String[] getCiphers();
+
 	public native String[] getDigests();
+
 	public native String[] getMacs();
+
 	public native String[] getSignAlgorithms();
+
 	public native String[] getPublicKeyEncryptions();
+
 	public native String[] getDeriveKeyAlgorithms();
+
 	public native byte[] generateRandom(int length);
+
 	public native int getCipherIVLength(String cipher);
+
 	public native int getCipherKeyLength(String cipher);
+
 	public native int getCipherBlockSize(String cipher);
+
 	public native byte[] symmetricEncrypt(String cipher, byte[] in, byte[] key, byte[] iv);
+
 	public native byte[] symmetricDecrypt(String cipher, byte[] in, byte[] key, byte[] iv);
+
 	public native int getDigestLength(String digest);
+
 	public native int getDigestBlockSize(String digest);
+
 	public native byte[] digest(String algor, byte[] data);
+
 	public native String[] getMacLength(String algor);
+
 	public native byte[] mac(String algor, byte[] data, byte[] key);
+
 	public native byte[] sign(String algor, byte[] data, byte[] privateKey);
+
 	public native int verify(String algor, byte[] digest, byte[] signature, byte[] publicKey);
+
 	public native byte[] publicKeyEncrypt(String algor, byte[] in, byte[] publicKey);
+
 	public native byte[] publicKeyDecrypt(String algor, byte[] in, byte[] privateKey);
+
 	public native byte[] deriveKey(String algor, int keyLength, byte[] peerPublicKey, byte[] privateKey);
+
 	public native String[] getErrorStrings();
+
+	public native DeviceInfo getDeviceInfo();
 
 	public static void main(String[] args) {
 		int i;
@@ -84,47 +120,52 @@ public class GmSSL {
 		for (i = 0; i < versions.length; i++) {
 			System.out.println(versions[i]);
 		}
-
+		DeviceInfo deviceInfo = gmssl.getDeviceInfo();
+		System.out.println("DeviceInfo:issureName=" + deviceInfo.issuerName + ",deviceName=" + deviceInfo.deviceName
+				+ ",deviceSerial=" + deviceInfo.deviceSerial + ",deviceVersion=" + deviceInfo.deviceVersion
+				+ ",standardVersion=" + deviceInfo.standardVersion + ",asymAlgAbility=" + deviceInfo.asymAlgAbility
+				+ ",symAlgAbility=" + deviceInfo.symAlgAbility + ",hashAlgAbility=" + deviceInfo.hashAlgAbility
+				+ ",bufferSize=" + deviceInfo.bufferSize);
 		// /* Supported algorithms */
 		// System.out.print("----Ciphers:---- ");
 		// String[] ciphers = gmssl.getCiphers();
 		// for (i = 0; i < ciphers.length - 1; i++) {
-		// 	System.out.print(ciphers[i] + ", ");
+		// System.out.print(ciphers[i] + ", ");
 		// }
 		// System.out.println(ciphers[i]);
 
 		// System.out.print("Digests: ");
 		// String[] digests = gmssl.getDigests();
 		// for (i = 0; i < digests.length - 1; i++) {
-		// 	System.out.print(digests[i] + ", ");
+		// System.out.print(digests[i] + ", ");
 		// }
 		// System.out.println(digests[i]);
 
 		// System.out.print("MACs: ");
 		// String[] macs = gmssl.getMacs();
 		// for (i = 0; i < macs.length - 1; i++) {
-		// 	System.out.print(macs[i] + ", ");
+		// System.out.print(macs[i] + ", ");
 		// }
 		// System.out.println(macs[i]);
 
 		// System.out.print("SignAlgorithms: ");
 		// String[] signAlgors = gmssl.getSignAlgorithms();
 		// for (i = 0; i < signAlgors.length - 1; i++) {
-		// 	System.out.print(signAlgors[i] + ", ");
+		// System.out.print(signAlgors[i] + ", ");
 		// }
 		// System.out.println(signAlgors[i]);
 
 		// System.out.print("PublicKeyEncryptions: ");
 		// String[] encAlgors = gmssl.getPublicKeyEncryptions();
 		// for (i = 0; i < encAlgors.length - 1; i++) {
-		// 	System.out.print(encAlgors[i] + ", ");
+		// System.out.print(encAlgors[i] + ", ");
 		// }
 		// System.out.println(encAlgors[i]);
 
 		// System.out.print("DeriveKeyAlgorithms: ");
 		// String[] kdfs = gmssl.getDeriveKeyAlgorithms();
 		// for (i = 0; i < kdfs.length - 1; i++) {
-		// 	System.out.print(kdfs[i] + ", ");
+		// System.out.print(kdfs[i] + ", ");
 		// }
 		// System.out.println(kdfs[i]);
 
@@ -135,18 +176,20 @@ public class GmSSL {
 		}
 		System.out.println("");
 
-		// System.out.printf("SMS4 IV length = %d bytes, key length = %d bytes, block size = %d bytes\n",
-		// 	gmssl.getCipherIVLength("SMS4"),
-		// 	gmssl.getCipherKeyLength("SMS4"),
-		// 	gmssl.getCipherBlockSize("SMS4"));
+		// System.out.printf("SMS4 IV length = %d bytes, key length = %d bytes, block
+		// size = %d bytes\n",
+		// gmssl.getCipherIVLength("SMS4"),
+		// gmssl.getCipherKeyLength("SMS4"),
+		// gmssl.getCipherBlockSize("SMS4"));
 
 		// byte[] key = {1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8};
 		// byte[] iv = {1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8};
-		// byte[] ciphertext = gmssl.symmetricEncrypt("SMS4", "01234567".getBytes(), key, iv);
+		// byte[] ciphertext = gmssl.symmetricEncrypt("SMS4", "01234567".getBytes(),
+		// key, iv);
 
 		// System.out.print("Ciphertext: ");
 		// for (i = 0; i < ciphertext.length; i++) {
-		// 	System.out.printf("%02X", ciphertext[i]);
+		// System.out.printf("%02X", ciphertext[i]);
 		// }
 		// System.out.println("");
 
@@ -154,21 +197,22 @@ public class GmSSL {
 
 		// System.out.print("Plaintext: ");
 		// for (i = 0; i < plaintext.length; i++) {
-		// 	System.out.printf("%02X", plaintext[i]);
+		// System.out.printf("%02X", plaintext[i]);
 		// }
 		// System.out.println("");
 
 		// byte[] dgst = gmssl.digest("SM3", "abc".getBytes());
 		// System.out.print("SM3(\"abc\") = ");
 		// for (i = 0; i < dgst.length; i++) {
-		// 	System.out.printf("%02X", dgst[i]);
+		// System.out.printf("%02X", dgst[i]);
 		// }
 		// System.out.println("");
 
-		// byte[] macTag = gmssl.mac("HMAC-SM3", "abc".getBytes(), "password".getBytes());
+		// byte[] macTag = gmssl.mac("HMAC-SM3", "abc".getBytes(),
+		// "password".getBytes());
 		// System.out.print("HMAC-SM3(\"abc\") = ");
 		// for (i = 0; i < macTag.length; i++) {
-		// 	System.out.printf("%02X", macTag[i]);
+		// System.out.printf("%02X", macTag[i]);
 		// }
 		// System.out.println("");
 
@@ -207,24 +251,26 @@ public class GmSSL {
 		// byte[] sig = gmssl.sign("sm2sign", dgst, sm2PrivateKey);
 		// System.out.print("SM2 Signature : ");
 		// for (i = 0; i < sig.length; i++) {
-		// 	System.out.printf("%02X", sig[i]);
+		// System.out.printf("%02X", sig[i]);
 		// }
 		// System.out.print("\n");
 
 		// int vret = gmssl.verify("sm2sign", dgst, sig, sm2PublicKey);
 		// System.out.println("Verification result = " + vret);
 
-		// byte[] sm2Ciphertext = gmssl.publicKeyEncrypt("sm2encrypt-with-sm3", dgst, sm2PublicKey);
+		// byte[] sm2Ciphertext = gmssl.publicKeyEncrypt("sm2encrypt-with-sm3", dgst,
+		// sm2PublicKey);
 		// System.out.print("SM2 Ciphertext : ");
 		// for (i = 0; i < sm2Ciphertext.length; i++) {
-		// 	System.out.printf("%02X", sm2Ciphertext[i]);
+		// System.out.printf("%02X", sm2Ciphertext[i]);
 		// }
 		// System.out.print("\n");
 
-		// byte[] sm2Plaintext = gmssl.publicKeyDecrypt("sm2encrypt-with-sm3", sm2Ciphertext, sm2PrivateKey);
+		// byte[] sm2Plaintext = gmssl.publicKeyDecrypt("sm2encrypt-with-sm3",
+		// sm2Ciphertext, sm2PrivateKey);
 		// System.out.print("SM2 Plaintext : ");
 		// for (i = 0; i < sm2Plaintext.length; i++) {
-		// 	System.out.printf("%02X", sm2Plaintext[i]);
+		// System.out.printf("%02X", sm2Plaintext[i]);
 		// }
 		// System.out.print("\n");
 
@@ -232,7 +278,7 @@ public class GmSSL {
 		// System.out.println("Errors:");
 		// String[] errors = gmssl.getErrorStrings();
 		// for (i = 0; i < errors.length; i++) {
-		// 	System.out.println(errors[i]);
+		// System.out.println(errors[i]);
 		// }
 
 	}
@@ -240,7 +286,7 @@ public class GmSSL {
 	static {
 		// System.loadLibrary("gmssljni");
 		System.load("/Users/tony/unicom/git/GmSSL/java/libgmssljni.so");
+		// System.load("/data/GmSSL/GmSSL-master/java/libgmssljni.so");
 
-		
 	}
 }
