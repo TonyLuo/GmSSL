@@ -172,21 +172,38 @@ JNIEXPORT jobject JNICALL Java_org_gmssl_GmSSL_getDeviceInfo(JNIEnv *env, jobjec
 	SGD_RV rc = SDF_GetDeviceInfo(pSessionHandle, &pstDeviceInfo);
 	if (rc)
 	{
-		printf("SDF_GetDeviceInfo failed rc:%d [%s %d]", rc, __func__, __LINE__);
+		printf("SDF_GetDeviceInfo failed. rc:%d [%s %d]", rc, __func__, __LINE__);
 	}
-	// Create the object of the class UserData
+
+	// Create the object of the class 
 	jclass deviceInfoClass = (*env)->FindClass(env, "org/gmssl/GmSSL$DeviceInfo");
 	jobject deviceInfo = (*env)->AllocObject(env, deviceInfoClass);
 
-	// Get the UserData fields to be set
-	jfieldID issuerNameField = (*env)->GetFieldID(env, deviceInfoClass, "issuerName", "Ljava/lang/String;");
-	jfieldID deviceNameField = (*env)->GetFieldID(env, deviceInfoClass, "deviceName", "Ljava/lang/String;");
+	// Get the  fields to be set
 
-	(*env)->SetObjectField(env, deviceInfo, issuerNameField, (*env)->NewStringUTF(env, (const char *)&(pstDeviceInfo.IssuerName)));
-	(*env)->SetObjectField(env, deviceInfo, deviceNameField, (*env)->NewStringUTF(env, (const char *)&(pstDeviceInfo.DeviceName)));
+	//https://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/types.html
 
-	// (*env)->SetDoubleField(deviceInfo, balanceField, balance);
+	jfieldID issuerName = (*env)->GetFieldID(env, deviceInfoClass, "issuerName", "Ljava/lang/String;");
+	jfieldID deviceName = (*env)->GetFieldID(env, deviceInfoClass, "deviceName", "Ljava/lang/String;");
+	jfieldID deviceSerial = (*env)->GetFieldID(env, deviceInfoClass, "deviceSerial", "Ljava/lang/String;");
 
+	jfieldID deviceVersion = (*env)->GetFieldID(env, deviceInfoClass, "deviceVersion", "I");
+	jfieldID standardVersion = (*env)->GetFieldID(env, deviceInfoClass, "standardVersion", "I");
+	jfieldID asymAlgAbility = (*env)->GetFieldID(env, deviceInfoClass, "asymAlgAbility", "I");
+	jfieldID symAlgAbility = (*env)->GetFieldID(env, deviceInfoClass, "symAlgAbility", "I");
+	jfieldID hashAlgAbility = (*env)->GetFieldID(env, deviceInfoClass, "hashAlgAbility", "I");
+	jfieldID bufferSize = (*env)->GetFieldID(env, deviceInfoClass, "bufferSize", "I");
+
+	(*env)->SetObjectField(env, deviceInfo, issuerName, (*env)->NewStringUTF(env, (const char *)&(pstDeviceInfo.IssuerName)));
+	(*env)->SetObjectField(env, deviceInfo, deviceName, (*env)->NewStringUTF(env, (const char *)&(pstDeviceInfo.DeviceName)));
+	(*env)->SetObjectField(env, deviceInfo, deviceSerial, (*env)->NewStringUTF(env, (const char *)&(pstDeviceInfo.DeviceSerial)));
+	(*env)->SetIntField(env, deviceInfo, deviceVersion, (jint)pstDeviceInfo.DeviceVersion);
+	(*env)->SetIntField(env, deviceInfo, standardVersion, (jint)pstDeviceInfo.StandardVersion);
+	(*env)->SetIntField(env, deviceInfo, asymAlgAbility, (jint)pstDeviceInfo.AsymAlgAbility);
+	(*env)->SetIntField(env, deviceInfo, symAlgAbility, (jint)pstDeviceInfo.SymAlgAbility);
+	(*env)->SetIntField(env, deviceInfo, hashAlgAbility, (jint)pstDeviceInfo.HashAlgAbility);
+	(*env)->SetIntField(env, deviceInfo, bufferSize, (jint)pstDeviceInfo.BufferSize);
+	
 	return deviceInfo;
 }
 

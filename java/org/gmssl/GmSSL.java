@@ -121,7 +121,7 @@ public class GmSSL {
 			System.out.println(versions[i]);
 		}
 		DeviceInfo deviceInfo = gmssl.getDeviceInfo();
-		System.out.println("DeviceInfo:issureName=" + deviceInfo.issuerName + ",deviceName=" + deviceInfo.deviceName
+		System.out.println("DeviceInfo: issureName=" + deviceInfo.issuerName + ",deviceName=" + deviceInfo.deviceName
 				+ ",deviceSerial=" + deviceInfo.deviceSerial + ",deviceVersion=" + deviceInfo.deviceVersion
 				+ ",standardVersion=" + deviceInfo.standardVersion + ",asymAlgAbility=" + deviceInfo.asymAlgAbility
 				+ ",symAlgAbility=" + deviceInfo.symAlgAbility + ",hashAlgAbility=" + deviceInfo.hashAlgAbility
