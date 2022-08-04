@@ -1,6 +1,6 @@
 # Ignore editor artefacts
 /.dir-locals.el
-
+.vscode
 # Top level excludes
 /Makefile.orig
 /MINFO
@@ -218,3 +218,4 @@ include/openssl/srp.h
 
 /rust
 /python
+*.log

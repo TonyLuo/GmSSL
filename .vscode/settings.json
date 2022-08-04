@@ -4,7 +4,9 @@
         "*.cjson": "jsonc",
         "*.wxss": "css",
         "*.wxs": "javascript",
-        "gmssl.h": "c",
-        "crypto.h": "c"
+        "*.h": "c",
+        "*.c": "c",
+        "*.cpp": "cpp",
+        "*.java": "java",
     }
 }

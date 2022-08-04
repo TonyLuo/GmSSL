@@ -69,17 +69,77 @@
 #include "gmssl_err.c"
 #include "GmSSL.h"
 
+// //三未信安
+#include "swsds.h"
+
+// #include <openssl/sdf.h>
+// #include "../engines/sdf_dummy.c"
+
+// #include "../include/internal/sdf_int.h"
+// #include "../crypto/sdf/sdf_lib.c"
+
 #define GMSSL_JNI_VERSION	"GmSSL-JNI API/1.1 2017-09-01"
+
+void* pDeviceHandle; //设备句柄
+void* pSessionHandle; //会话句柄
+// SGD_HANDLE pDeviceHandle; //设备句柄
+// SGD_HANDLE pSessionHandle; //会话句柄
+static void initSDF(void)
+{
+	printf("-----initSDF-----\n");
+	int rc = SDF_OpenDevice(&pDeviceHandle);
+	if(rc)
+	{
+		printf("-----SDF_OpenDevice failed rc:%d [%s %d]-----\n", rc, __func__, __LINE__);
+	}
+	else
+	{
+		rc = SDF_OpenSession(pDeviceHandle, &pSessionHandle);
+		if(rc)
+		{
+			printf("------SDF_OpenSession failed. rc:%d [%s %d]------\n", rc, __func__, __LINE__);
+		}
+		else
+		{
+			printf("-------SDF_OpenSession success. rc:%d [%s %d]-----\n", rc, __func__, __LINE__);
+		}
+	}
+	
+}
+static void releaseSDF(void)
+{
+	printf("-----releaseSDF-----\n");
+	int rc = SDF_CloseSession(pSessionHandle);
+	if(rc)
+	{
+		printf("-----SDF_CloseSession failed rc:%d [%s %d]-----\n", rc, __func__, __LINE__);
+	}
+	
+	rc = SDF_CloseDevice(pDeviceHandle);
+	if(rc)
+	{
+		printf("------SDF_CloseDevice failed. rc:%d [%s %d]------\n", rc, __func__, __LINE__);
+	}
+	else
+	{
+		printf("-------SDF_CloseDevice success. rc:%d [%s %d]-----\n", rc, __func__, __LINE__);
+	}
+	
+	
+}
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
 {
 	(void)ERR_load_JNI_strings();
+	initSDF();
+
 	return JNI_VERSION_1_2;
 }
 
 JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved)
 {
 	ERR_unload_JNI_strings();
+	releaseSDF();
 }
 
 JNIEXPORT jobjectArray JNICALL Java_org_gmssl_GmSSL_getVersions(JNIEnv *env, jobject this)
@@ -108,6 +168,7 @@ JNIEXPORT jobjectArray JNICALL Java_org_gmssl_GmSSL_getVersions(JNIEnv *env, job
 JNIEXPORT jbyteArray JNICALL Java_org_gmssl_GmSSL_generateRandom(
 	JNIEnv *env, jobject this, jint outlen)
 {
+
 	jbyteArray ret = NULL;
 	jbyte *outbuf = NULL;
 
@@ -121,10 +182,15 @@ JNIEXPORT jbyteArray JNICALL Java_org_gmssl_GmSSL_generateRandom(
 		goto end;
 	}
 
-	if (!RAND_bytes((unsigned char *)outbuf, outlen)) {
+	int r = SDF_GenerateRandom(pSessionHandle, outlen, (unsigned char *)outbuf);
+	printf("-----SDF_GenerateRandom r:%d [%s %d]-----\n", r, __func__, __LINE__);
+
+	if (!!r) {
+		printf("-----SDF_GenerateRandom failed. r:%d [%s %d]-----\n", r, __func__, __LINE__);
 		JNIerr(JNI_F_JAVA_ORG_GMSSL_GMSSL_GENERATERANDOM, JNI_R_GMSSL_RNG_ERROR);
 		goto end;
 	}
+
 	if (!(ret = (*env)->NewByteArray(env, outlen))) {
 		JNIerr(JNI_F_JAVA_ORG_GMSSL_GMSSL_GENERATERANDOM, JNI_R_JNI_MALLOC_FAILURE);
 		goto end;

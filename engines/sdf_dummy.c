@@ -206,6 +206,7 @@ unsigned char eccPrivateKeyBuf[68] = {
 int SDF_OpenDevice(
 	void **phDeviceHandle)
 {
+	printf("------SDF_OpenDevice-----\n");
 	if (!phDeviceHandle /* || !(*phDeviceHandle) */)
 		return SDR_INARGERR;
 
@@ -223,6 +224,8 @@ int SDF_OpenSession(
 	void *hDeviceHandle,
 	void **phSessionHandle)
 {
+	printf("------SDF_OpenSession-----\n");
+
 	if (!phSessionHandle  /* || !(*phSessionHandle) */)
 		return SDR_INARGERR;
 	*phSessionHandle = sessionHandle;
@@ -272,7 +275,17 @@ int SDF_GenerateRandom(
 	unsigned int uiLength,
 	unsigned char *pucRandom)
 {
-	return SDR_OK;
+	printf("----SDF_GenerateRandom uiLength:%d----\n",uiLength);
+
+	const RAND_METHOD *meth = RAND_get_rand_method();
+    if (meth && meth->bytes)
+        return meth->bytes(pucRandom, uiLength);
+    return (-1);
+	// pucRandom[0] = 0x1;
+	// pucRandom[1] = 0x2;
+	// pucRandom[2] = 0x3;
+	
+	// return SDR_OK;
 }
 
 int SDF_GetPrivateKeyAccessRight(
