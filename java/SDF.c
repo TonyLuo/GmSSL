@@ -110,6 +110,7 @@ static char *Hex2Char(char *str, int len){
 	return hex;
 }
 
+
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
 {
 	(void)ERR_load_JNI_strings();
@@ -204,6 +205,7 @@ JNIEXPORT jbyteArray JNICALL Java_org_gmssl_SDF_generateRandom(JNIEnv *env, jobj
 		JNIerr(JNI_F_JAVA_ORG_GMSSL_GMSSL_GENERATERANDOM, JNI_R_JNI_MALLOC_FAILURE);
 		goto end;
 	}
+	
 
 	(*env)->SetByteArrayRegion(env, ret, 0, outlen, (jbyte *)outbuf);
 
@@ -290,7 +292,7 @@ JNIEXPORT jobject JNICALL Java_org_gmssl_SDF_generateKeyPair_1RSA(JNIEnv *env, j
  */
 JNIEXPORT jobject JNICALL Java_org_gmssl_SDF_generateKeyPair_1ECC(JNIEnv *env, jobject thisObject, jint algId, jint keyBits)
 {
-	unsigned int uiAlgID = SGD_SM2_1;
+	unsigned int uiAlgID = algId;
 	unsigned int uiKeyBits = keyBits;
 	ECCrefPublicKey pucPublicKey;
 	memset(&pucPublicKey, 0, sizeof(ECCrefPublicKey));

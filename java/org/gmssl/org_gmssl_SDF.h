@@ -7,6 +7,108 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#undef org_gmssl_SDF_SGD_TRUE
+#define org_gmssl_SDF_SGD_TRUE 1L
+#undef org_gmssl_SDF_SGD_FALSE
+#define org_gmssl_SDF_SGD_FALSE 0L
+#undef org_gmssl_SDF_SGD_SM1_ECB
+#define org_gmssl_SDF_SGD_SM1_ECB 257L
+#undef org_gmssl_SDF_SGD_SM1_CBC
+#define org_gmssl_SDF_SGD_SM1_CBC 258L
+#undef org_gmssl_SDF_SGD_SM1_CFB
+#define org_gmssl_SDF_SGD_SM1_CFB 260L
+#undef org_gmssl_SDF_SGD_SM1_OFB
+#define org_gmssl_SDF_SGD_SM1_OFB 264L
+#undef org_gmssl_SDF_SGD_SM1_MAC
+#define org_gmssl_SDF_SGD_SM1_MAC 272L
+#undef org_gmssl_SDF_SGD_SM1_CTR
+#define org_gmssl_SDF_SGD_SM1_CTR 288L
+#undef org_gmssl_SDF_SGD_SSF33_ECB
+#define org_gmssl_SDF_SGD_SSF33_ECB 513L
+#undef org_gmssl_SDF_SGD_SSF33_CBC
+#define org_gmssl_SDF_SGD_SSF33_CBC 514L
+#undef org_gmssl_SDF_SGD_SSF33_CFB
+#define org_gmssl_SDF_SGD_SSF33_CFB 516L
+#undef org_gmssl_SDF_SGD_SSF33_OFB
+#define org_gmssl_SDF_SGD_SSF33_OFB 520L
+#undef org_gmssl_SDF_SGD_SSF33_MAC
+#define org_gmssl_SDF_SGD_SSF33_MAC 528L
+#undef org_gmssl_SDF_SGD_SSF33_CTR
+#define org_gmssl_SDF_SGD_SSF33_CTR 544L
+#undef org_gmssl_SDF_SGD_AES_ECB
+#define org_gmssl_SDF_SGD_AES_ECB 1025L
+#undef org_gmssl_SDF_SGD_AES_CBC
+#define org_gmssl_SDF_SGD_AES_CBC 1026L
+#undef org_gmssl_SDF_SGD_AES_CFB
+#define org_gmssl_SDF_SGD_AES_CFB 1028L
+#undef org_gmssl_SDF_SGD_AES_OFB
+#define org_gmssl_SDF_SGD_AES_OFB 1032L
+#undef org_gmssl_SDF_SGD_AES_MAC
+#define org_gmssl_SDF_SGD_AES_MAC 1040L
+#undef org_gmssl_SDF_SGD_AES_CTR
+#define org_gmssl_SDF_SGD_AES_CTR 1056L
+#undef org_gmssl_SDF_SGD_3DES_ECB
+#define org_gmssl_SDF_SGD_3DES_ECB 2049L
+#undef org_gmssl_SDF_SGD_3DES_CBC
+#define org_gmssl_SDF_SGD_3DES_CBC 2050L
+#undef org_gmssl_SDF_SGD_3DES_CFB
+#define org_gmssl_SDF_SGD_3DES_CFB 2052L
+#undef org_gmssl_SDF_SGD_3DES_OFB
+#define org_gmssl_SDF_SGD_3DES_OFB 2056L
+#undef org_gmssl_SDF_SGD_3DES_MAC
+#define org_gmssl_SDF_SGD_3DES_MAC 2064L
+#undef org_gmssl_SDF_SGD_3DES_CTR
+#define org_gmssl_SDF_SGD_3DES_CTR 2080L
+#undef org_gmssl_SDF_SGD_SMS4_ECB
+#define org_gmssl_SDF_SGD_SMS4_ECB 8193L
+#undef org_gmssl_SDF_SGD_SMS4_CBC
+#define org_gmssl_SDF_SGD_SMS4_CBC 8194L
+#undef org_gmssl_SDF_SGD_SMS4_CFB
+#define org_gmssl_SDF_SGD_SMS4_CFB 8196L
+#undef org_gmssl_SDF_SGD_SMS4_OFB
+#define org_gmssl_SDF_SGD_SMS4_OFB 8200L
+#undef org_gmssl_SDF_SGD_SMS4_MAC
+#define org_gmssl_SDF_SGD_SMS4_MAC 8208L
+#undef org_gmssl_SDF_SGD_SMS4_CTR
+#define org_gmssl_SDF_SGD_SMS4_CTR 8224L
+#undef org_gmssl_SDF_SGD_DES_ECB
+#define org_gmssl_SDF_SGD_DES_ECB 16385L
+#undef org_gmssl_SDF_SGD_DES_CBC
+#define org_gmssl_SDF_SGD_DES_CBC 16386L
+#undef org_gmssl_SDF_SGD_DES_CFB
+#define org_gmssl_SDF_SGD_DES_CFB 16388L
+#undef org_gmssl_SDF_SGD_DES_OFB
+#define org_gmssl_SDF_SGD_DES_OFB 16392L
+#undef org_gmssl_SDF_SGD_DES_MAC
+#define org_gmssl_SDF_SGD_DES_MAC 16400L
+#undef org_gmssl_SDF_SGD_DES_CTR
+#define org_gmssl_SDF_SGD_DES_CTR 16416L
+#undef org_gmssl_SDF_SGD_RSA
+#define org_gmssl_SDF_SGD_RSA 65536L
+#undef org_gmssl_SDF_SGD_RSA_SIGN
+#define org_gmssl_SDF_SGD_RSA_SIGN 65792L
+#undef org_gmssl_SDF_SGD_RSA_ENC
+#define org_gmssl_SDF_SGD_RSA_ENC 66048L
+#undef org_gmssl_SDF_SGD_SM2_1
+#define org_gmssl_SDF_SGD_SM2_1 131328L
+#undef org_gmssl_SDF_SGD_SM2_2
+#define org_gmssl_SDF_SGD_SM2_2 131584L
+#undef org_gmssl_SDF_SGD_SM2_3
+#define org_gmssl_SDF_SGD_SM2_3 132096L
+#undef org_gmssl_SDF_SGD_SM3
+#define org_gmssl_SDF_SGD_SM3 1L
+#undef org_gmssl_SDF_SGD_SHA1
+#define org_gmssl_SDF_SGD_SHA1 2L
+#undef org_gmssl_SDF_SGD_SHA256
+#define org_gmssl_SDF_SGD_SHA256 4L
+#undef org_gmssl_SDF_SGD_SHA512
+#define org_gmssl_SDF_SGD_SHA512 8L
+#undef org_gmssl_SDF_SGD_SHA384
+#define org_gmssl_SDF_SGD_SHA384 16L
+#undef org_gmssl_SDF_SGD_SHA224
+#define org_gmssl_SDF_SGD_SHA224 32L
+#undef org_gmssl_SDF_SGD_MD5
+#define org_gmssl_SDF_SGD_MD5 128L
 /*
  * Class:     org_gmssl_SDF
  * Method:    getDeviceInfo
@@ -26,18 +128,18 @@ JNIEXPORT jbyteArray JNICALL Java_org_gmssl_SDF_generateRandom
 /*
  * Class:     org_gmssl_SDF
  * Method:    generateKeyPair_RSA
- * Signature: (ILorg/gmssl/SDF/RSArefPublicKey;Lorg/gmssl/SDF/RSArefPrivateKey;)I
+ * Signature: (I)Lorg/gmssl/SDF/KeyPair;
  */
-JNIEXPORT jint JNICALL Java_org_gmssl_SDF_generateKeyPair_1RSA
-  (JNIEnv *, jobject, jint, jobject, jobject);
+JNIEXPORT jobject JNICALL Java_org_gmssl_SDF_generateKeyPair_1RSA
+  (JNIEnv *, jobject, jint);
 
 /*
  * Class:     org_gmssl_SDF
  * Method:    generateKeyPair_ECC
- * Signature: (IILorg/gmssl/SDF/ECCrefPublicKey;Lorg/gmssl/SDF/ECCrefPrivateKey;)I
+ * Signature: (II)Lorg/gmssl/SDF/KeyPair;
  */
-JNIEXPORT jint JNICALL Java_org_gmssl_SDF_generateKeyPair_1ECC
-  (JNIEnv *, jobject, jint, jint, jobject, jobject);
+JNIEXPORT jobject JNICALL Java_org_gmssl_SDF_generateKeyPair_1ECC
+  (JNIEnv *, jobject, jint, jint);
 
 #ifdef __cplusplus
 }
