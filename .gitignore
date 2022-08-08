@@ -220,3 +220,4 @@ include/openssl/srp.h
 /python
 *.log
 *.class
+.vscode/

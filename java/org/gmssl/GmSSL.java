@@ -47,7 +47,6 @@
  * ====================================================================
  */
 package org.gmssl;
-
 public class GmSSL {
 	class DeviceInfo {
 		public String issuerName;
@@ -55,11 +54,16 @@ public class GmSSL {
 		public String deviceSerial;
 		public int deviceVersion;
 		public int standardVersion;
-		public int asymAlgAbility;
+		public int[] asymAlgAbility;
 		public int symAlgAbility;
 		public int hashAlgAbility;
 		public int bufferSize;
 	}
+	/*设备管理类函数*/
+	public native DeviceInfo getDeviceInfo();
+
+	/*密钥管理类函数*/
+	public native int generateKeyPair_RSA(int keySize,byte[] publicKey,byte[] privateKey);
 
 	public native String[] getVersions();
 
@@ -109,11 +113,12 @@ public class GmSSL {
 
 	public native String[] getErrorStrings();
 
-	public native DeviceInfo getDeviceInfo();
 
 	public static void main(String[] args) {
 		int i;
 		final GmSSL gmssl = new GmSSL();
+		// final SDF sdf = new SDF();
+
 
 		/* GmSSL versions */
 		String[] versions = gmssl.getVersions();
